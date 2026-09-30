@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(199, 249, 255);
+    font: 30px 'Gill Sans', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    margin-inline: auto;
+    border: 3px solid #51a2ff;
+    border-radius: 1px;
+}
+
+table, td {
+    text-align: center;
+}
+
+td {
+    border: 3px solid #51a2ff;
+    border-radius: 1px;
+    padding: 0.625rem;
+}
