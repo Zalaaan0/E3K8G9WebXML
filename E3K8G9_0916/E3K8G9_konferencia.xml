@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<konferencia>
+    <cim>Konferencia</cim>
+    <hallgatok>
+        <hallgato>
+            <nev>Kriston Zalán</nev>
+            <lakcim>3642Bánhorváti Rákóczi út 60.</lakcim>
+        </hallgato>
+    </hallgatok>
+    <helyszin>3515 Miskolc, Egyetem út 1</helyszin>
+    <eloado>
+        <nev>Ádám Bence</nev>
+        <adoszam>12345678</adoszam>
+        <lakcim>3515 Miskolc Eper utca 4</lakcim>
+    </eloado>
+    <datum>2026.09.16</datum>
+</konferencia>
