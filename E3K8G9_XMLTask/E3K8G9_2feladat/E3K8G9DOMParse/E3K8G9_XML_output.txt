@@ -1,0 +1,156 @@
+XSD validalas sikeres! Gyoker elem: Egyetemi rendszer (EgyetemiRendszer)
+================================================================
+
+Elem: Költségtérítés
+--------------------------------
+Számlaszám (PK/FK): SZ-2026-001
+Összeg: 185000
+Fizetési határidő: 2026-10-15
+Fizetés módja: Atutalas
+--------------------------------
+
+Elem: Költségtérítés
+--------------------------------
+Számlaszám (PK/FK): SZ-2026-002
+Összeg: 210000
+Fizetési határidő: 2026-10-20
+Fizetés módja: Bankkartya
+--------------------------------
+
+Elem: Hallgató
+--------------------------------
+Neptun-kód (PK/FK): E3K8G9
+Név: Kriston Zalán
+Születési idő: 2004-08-09
+Cím:
+    Város: Miskolc
+    Utca: Eper utca
+    Házszám: 4
+Elérhetőség:
+    E-mail cím: zalan.kriston@student.uni-miskolc.hu
+    E-mail cím: kr.zalan65@gmail.com
+    Telefonszám: +36501111777
+    Telefonszám: +36307654321
+--------------------------------
+
+Elem: Hallgató
+--------------------------------
+Neptun-kód (PK/FK): AB12CD
+Név: Konyha Kristof
+Születési idő: 2003-11-22
+Cím:
+    Város: Miskolc
+    Utca: Szentpeteri kapu
+    Házszám: 42
+Elérhetőség:
+    E-mail cím: kristof.konyha@student.uni-miskolc.hu
+    E-mail cím: konyha.kristof@gmail.com
+    Telefonszám: +36209876543
+    Telefonszám: +36705554433
+--------------------------------
+
+Elem: Tantárgy
+--------------------------------
+Tantárgykód (PK/FK): GEIAK120B
+Név: Webesadatkör
+Kredit: 5
+Típus: Kotelezo
+--------------------------------
+
+Elem: Tantárgy
+--------------------------------
+Tantárgykód (PK/FK): GEIAK215B
+Név: Adatbazisrendszerek I.
+Kredit: 4
+Típus: Kotelezo
+--------------------------------
+
+Elem: Oktató
+--------------------------------
+Oktató azonosító (PK/FK): OKT-01
+Név: Dr. Bednarik László
+Beosztás: Egyetemi docens
+Szakirány: Webadatkör
+Szakirány: Adatbazis-rendszerek
+--------------------------------
+
+Elem: Oktató
+--------------------------------
+Oktató azonosító (PK/FK): OKT-02
+Név: Dr. Nagy Anna
+Beosztás: Adjunktus
+Szakirány: Webtechnologiak
+Szakirány: Informaciobiztonsag
+--------------------------------
+
+Elem: Tanszék
+--------------------------------
+Tanszék azonosító (PK/FK): TSZ-IIT
+Név: Informatikai Intezet
+Tanszékvezető: Dr. Szabo Peter
+Létszám: 38
+--------------------------------
+
+Elem: Tanszék
+--------------------------------
+Tanszék azonosító (PK/FK): TSZ-AUT
+Név: Automatizalasi es Infokommunikacios Intezet
+Tanszékvezető: Dr. Toth Gabor
+Létszám: 26
+--------------------------------
+
+Elem: Befizetés (1:1)
+--------------------------------
+Neptun-kód (PK/FK): E3K8G9
+Számlaszám (PK/FK): SZ-2026-001
+--------------------------------
+
+Elem: Befizetés (1:1)
+--------------------------------
+Neptun-kód (PK/FK): AB12CD
+Számlaszám (PK/FK): SZ-2026-002
+--------------------------------
+
+Elem: Érdemjegy (M:N)
+--------------------------------
+Neptun-kód (PK/FK): E3K8G9
+Tantárgykód (PK/FK): GEIAK120B
+Érték: 5
+Dátum: 2026-12-18
+--------------------------------
+
+Elem: Érdemjegy (M:N)
+--------------------------------
+Neptun-kód (PK/FK): AB12CD
+Tantárgykód (PK/FK): GEIAK215B
+Érték: 4
+Dátum: 2026-12-19
+--------------------------------
+
+Elem: Oktatás (M:N)
+--------------------------------
+Oktató azonosító (PK/FK): OKT-02
+Tantárgykód (PK/FK): GEIAK120B
+Félév: 2026/27/1
+Órarendi nap: Szerda
+--------------------------------
+
+Elem: Oktatás (M:N)
+--------------------------------
+Oktató azonosító (PK/FK): OKT-01
+Tantárgykód (PK/FK): GEIAK215B
+Félév: 2026/27/1
+Órarendi nap: Hetfo
+--------------------------------
+
+Elem: Tantárgygondozás (1:N)
+--------------------------------
+Tanszék azonosító (PK/FK): TSZ-IIT
+Tantárgykód (PK/FK): GEIAK120B
+--------------------------------
+
+Elem: Tantárgygondozás (1:N)
+--------------------------------
+Tanszék azonosító (PK/FK): TSZ-IIT
+Tantárgykód (PK/FK): GEIAK215B
+--------------------------------

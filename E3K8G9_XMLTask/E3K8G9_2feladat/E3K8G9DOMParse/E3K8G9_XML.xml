@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EgyetemiRendszer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:noNamespaceSchemaLocation="E3K8G9_XSD.xsd">
+    <!-- Koltsegterites peldanyok (1. peldany) -->
+    <Koltsegterites szamla_szam="SZ-2026-001">
+        <osszeg>185000</osszeg>
+        <fizetesi_hatarido>2026-10-15</fizetesi_hatarido>
+        <fizetes_modja>Atutalas</fizetes_modja>
+    </Koltsegterites>
+
+    <!-- Koltsegterites peldanyok (2. peldany) -->
+    <Koltsegterites szamla_szam="SZ-2026-002">
+        <osszeg>210000</osszeg>
+        <fizetesi_hatarido>2026-10-20</fizetesi_hatarido>
+        <fizetes_modja>Bankkartya</fizetes_modja>
+    </Koltsegterites>
+
+    <!-- hallgato peldanyok (1. peldany) -->
+    <hallgato neptun="E3K8G9">
+        <nev>Kriston Zalán</nev>
+        <szuletesi_ido>2004-08-09</szuletesi_ido>
+        <!-- Cim osszetett elem -->
+        <Cim>
+            <Varos>Miskolc</Varos>
+            <Utca>Eper utca</Utca>
+            <Hazszam>4</Hazszam>
+        </Cim>
+        <!-- Elerhetoseg elem tobbertekű Email es Telefon peldanyokkal -->
+        <Elerhetoseg>
+            <!-- Email peldanyok (1. es 2. peldany) -->
+            <Email>zalan.kriston@student.uni-miskolc.hu</Email>
+            <Email>kr.zalan65@gmail.com</Email>
+            <!-- Telefon peldanyok (1. es 2. peldany) -->
+            <Telefon>+36501111777</Telefon>
+            <Telefon>+36307654321</Telefon>
+        </Elerhetoseg>
+    </hallgato>
+
+    <!-- hallgato peldanyok (2. peldany) -->
+    <hallgato neptun="AB12CD">
+        <nev>Konyha Kristof</nev>
+        <szuletesi_ido>2003-11-22</szuletesi_ido>
+        <!-- Cim osszetett elem -->
+        <Cim>
+            <Varos>Miskolc</Varos>
+            <Utca>Szentpeteri kapu</Utca>
+            <Hazszam>42</Hazszam>
+        </Cim>
+        <!-- Elerhetoseg elem tobbertekű Email es Telefon peldanyokkal -->
+        <Elerhetoseg>
+            <!-- Email peldanyok (1. es 2. peldany) -->
+            <Email>kristof.konyha@student.uni-miskolc.hu</Email>
+            <Email>konyha.kristof@gmail.com</Email>
+            <!-- Telefon peldanyok (1. es 2. peldany) -->
+            <Telefon>+36209876543</Telefon>
+            <Telefon>+36705554433</Telefon>
+        </Elerhetoseg>
+    </hallgato>
+
+    <!-- tantargy peldanyok (1. peldany) -->
+    <tantargy tkod="GEIAK120B">
+        <nev>Webesadatkör</nev>
+        <kredit>5</kredit>
+        <tipus>Kotelezo</tipus>
+    </tantargy>
+
+    <!-- tantargy peldanyok (2. peldany) -->
+    <tantargy tkod="GEIAK215B">
+        <nev>Adatbazisrendszerek I.</nev>
+        <kredit>4</kredit>
+        <tipus>Kotelezo</tipus>
+    </tantargy>
+
+    <!-- oktato peldanyok (1. peldany) -->
+    <oktato oktatoId="OKT-01">
+        <nev>Dr. Bednarik László</nev>
+        <beosztas>Egyetemi docens</beosztas>
+        <!-- szakirany tobbertekű elem peldanyai (1. es 2. peldany) -->
+        <szakirany>Webadatkör</szakirany>
+        <szakirany>Adatbazis-rendszerek</szakirany>
+    </oktato>
+
+    <!-- oktato peldanyok (2. peldany) -->
+    <oktato oktatoId="OKT-02">
+        <nev>Dr. Nagy Anna</nev>
+        <beosztas>Adjunktus</beosztas>
+        <!-- szakirany tobbertekű elem peldanyai (1. es 2. peldany) -->
+        <szakirany>Webtechnologiak</szakirany>
+        <szakirany>Informaciobiztonsag</szakirany>
+    </oktato>
+
+    <!-- tanszek peldanyok (1. peldany) -->
+    <tanszek tanszekId="TSZ-IIT">
+        <nev>Informatikai Intezet</nev>
+        <vezeto>Dr. Szabo Peter</vezeto>
+        <letszam>38</letszam>
+    </tanszek>
+
+    <!-- tanszek peldanyok (2. peldany) -->
+    <tanszek tanszekId="TSZ-AUT">
+        <nev>Automatizalasi es Infokommunikacios Intezet</nev>
+        <vezeto>Dr. Toth Gabor</vezeto>
+        <letszam>26</letszam>
+    </tanszek>
+
+    <!-- befizet kapcsolat peldanyai (1. es 2. peldany) -->
+    <befizet szamla_szam="SZ-2026-001" neptun="E3K8G9"/>
+    <befizet szamla_szam="SZ-2026-002" neptun="AB12CD"/>
+
+    <!-- jegy kapcsolat peldanyai (1. es 2. peldany) -->
+    <jegy neptun="E3K8G9" tkod="GEIAK120B">
+        <ertek>5</ertek>
+        <datum>2026-12-18</datum>
+    </jegy>
+    <jegy neptun="AB12CD" tkod="GEIAK215B">
+        <ertek>4</ertek>
+        <datum>2026-12-19</datum>
+    </jegy>
+
+    <!-- oktat kapcsolat peldanyai (1. es 2. peldany) -->
+    <oktat tkod="GEIAK120B" oktatoId="OKT-02">
+        <felev>2026/27/1</felev>
+        <orarendi_nap>Szerda</orarendi_nap>
+    </oktat>
+    <oktat tkod="GEIAK215B" oktatoId="OKT-01">
+        <felev>2026/27/1</felev>
+        <orarendi_nap>Hetfo</orarendi_nap>
+    </oktat>
+
+    <!-- gondoz kapcsolat peldanyai (1. es 2. peldany) -->
+    <gondoz tkod="GEIAK120B" tanszekId="TSZ-IIT"/>
+    <gondoz tkod="GEIAK215B" tanszekId="TSZ-IIT"/>
+
+</EgyetemiRendszer>

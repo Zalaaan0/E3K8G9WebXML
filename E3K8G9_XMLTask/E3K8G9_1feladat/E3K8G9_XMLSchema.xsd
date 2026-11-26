@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <!-- Neptun-kod tipusa: pontosan 6 nagybetu vagy szam -->
+    <xs:simpleType name="neptunTipus">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z0-9]{6}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Szamlaszam tipusa: SZ-EEEE-SSS formatum -->
+    <xs:simpleType name="szamlaSzamTipus">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="SZ-[0-9]{4}-[0-9]{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Tantargykod tipusa: pl. GEIAK120B -->
+    <xs:simpleType name="tkodTipus">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z]{5}[0-9]{3}[A-Z]"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Oktato azonosito tipusa: OKT-SS formatum -->
+    <xs:simpleType name="oktatoIdTipus">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="OKT-[0-9]{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Tanszek azonosito tipusa: TSZ-XXX formatum -->
+    <xs:simpleType name="tanszekIdTipus">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="TSZ-[A-Z]{2,5}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Fizetesi mod felsorolas -->
+    <xs:simpleType name="fizetesModTipus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Atutalas"/>
+            <xs:enumeration value="Bankkartya"/>
+            <xs:enumeration value="Keszpenz"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Tantargy tipus felsorolas -->
+    <xs:simpleType name="targyTipus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Kotelezo"/>
+            <xs:enumeration value="Kotelezoen valaszthato"/>
+            <xs:enumeration value="Szabadon valaszthato"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Kredit ertek tartomany (1 es 30 kozott) -->
+    <xs:simpleType name="kreditTipus">
+        <xs:restriction base="xs:positiveInteger">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="30"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Erdemjegy ertek tartomany (1 es 5 kozott) -->
+    <xs:simpleType name="jegyErtekTipus">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="5"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- E-mail cim formatum ellenorzese -->
+    <xs:simpleType name="emailTipus">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Telefonszam formatum ellenorzese (+36...) -->
+    <xs:simpleType name="telefonTipus">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\+36[0-9]{8,9}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Felev formatum: EEEE/EE/1 vagy 2 -->
+    <xs:simpleType name="felevTipus">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{4}/[0-9]{2}/[12]"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Orarendi nap felsorolas -->
+    <xs:simpleType name="napTipus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Hetfo"/>
+            <xs:enumeration value="Kedd"/>
+            <xs:enumeration value="Szerda"/>
+            <xs:enumeration value="Csutortok"/>
+            <xs:enumeration value="Pentek"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- Koltsegterites egyed tipusa -->
+    <xs:complexType name="koltsegteritesTipus">
+        <xs:sequence>
+            <xs:element name="osszeg" type="xs:positiveInteger"/>
+            <xs:element name="fizetesi_hatarido" type="xs:date"/>
+            <xs:element name="fizetes_modja" type="fizetesModTipus"/>
+        </xs:sequence>
+        <xs:attribute name="szamla_szam" type="szamlaSzamTipus" use="required"/>
+    </xs:complexType>
+
+    <!-- Cim osszetett tulajdonsag tipusa -->
+    <xs:complexType name="cimTipus">
+        <xs:sequence>
+            <xs:element name="Varos" type="xs:string"/>
+            <xs:element name="Utca" type="xs:string"/>
+            <xs:element name="Hazszam" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Elerhetoseg osszetett tulajdonsag tipusa (tobbertekű gyermekekkel) -->
+    <xs:complexType name="elerhetosegTipus">
+        <xs:sequence>
+            <xs:element name="Email" type="emailTipus" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="Telefon" type="telefonTipus" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Hallgato egyed tipusa -->
+    <xs:complexType name="hallgatoTipus">
+        <xs:sequence>
+            <xs:element name="nev" type="xs:string"/>
+            <xs:element name="szuletesi_ido" type="xs:date"/>
+            <xs:element name="Cim" type="cimTipus"/>
+            <xs:element name="Elerhetoseg" type="elerhetosegTipus"/>
+        </xs:sequence>
+        <xs:attribute name="neptun" type="neptunTipus" use="required"/>
+    </xs:complexType>
+
+    <!-- Tantargy egyed tipusa -->
+    <xs:complexType name="tantargyTipus">
+        <xs:sequence>
+            <xs:element name="nev" type="xs:string"/>
+            <xs:element name="kredit" type="kreditTipus"/>
+            <xs:element name="tipus" type="targyTipus"/>
+        </xs:sequence>
+        <xs:attribute name="tkod" type="tkodTipus" use="required"/>
+    </xs:complexType>
+
+    <!-- Oktato egyed tipusa (tobbertekű szakirany elemmel) -->
+    <xs:complexType name="oktatoTipus">
+        <xs:sequence>
+            <xs:element name="nev" type="xs:string"/>
+            <xs:element name="beosztas" type="xs:string"/>
+            <xs:element name="szakirany" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="oktatoId" type="oktatoIdTipus" use="required"/>
+    </xs:complexType>
+
+    <!-- Tanszek egyed tipusa -->
+    <xs:complexType name="tanszekTipus">
+        <xs:sequence>
+            <xs:element name="nev" type="xs:string"/>
+            <xs:element name="vezeto" type="xs:string"/>
+            <xs:element name="letszam" type="xs:positiveInteger"/>
+        </xs:sequence>
+        <xs:attribute name="tanszekId" type="tanszekIdTipus" use="required"/>
+    </xs:complexType>
+
+    <!-- Befizet 1:1 kapcsolat tipusa -->
+    <xs:complexType name="befizetTipus">
+        <xs:attribute name="szamla_szam" type="szamlaSzamTipus" use="required"/>
+        <xs:attribute name="neptun" type="neptunTipus" use="required"/>
+    </xs:complexType>
+
+    <!-- Jegy M:N kapcsolat tipusa kapcsolati tulajdonsagokkal -->
+    <xs:complexType name="jegyTipus">
+        <xs:sequence>
+            <xs:element name="ertek" type="jegyErtekTipus"/>
+            <xs:element name="datum" type="xs:date"/>
+        </xs:sequence>
+        <xs:attribute name="neptun" type="neptunTipus" use="required"/>
+        <xs:attribute name="tkod" type="tkodTipus" use="required"/>
+    </xs:complexType>
+
+    <!-- Oktat M:N kapcsolat tipusa kapcsolati tulajdonsagokkal -->
+    <xs:complexType name="oktatTipus">
+        <xs:sequence>
+            <xs:element name="felev" type="felevTipus"/>
+            <xs:element name="orarendi_nap" type="napTipus"/>
+        </xs:sequence>
+        <xs:attribute name="tkod" type="tkodTipus" use="required"/>
+        <xs:attribute name="oktatoId" type="oktatoIdTipus" use="required"/>
+    </xs:complexType>
+
+    <!-- Gondoz 1:N kapcsolat tipusa -->
+    <xs:complexType name="gondozTipus">
+        <xs:attribute name="tkod" type="tkodTipus" use="required"/>
+        <xs:attribute name="tanszekId" type="tanszekIdTipus" use="required"/>
+    </xs:complexType>
+
+    <!-- EgyetemiRendszer gyokerelem -->
+    <xs:element name="EgyetemiRendszer">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Koltsegterites peldanyok -->
+                <xs:element name="Koltsegterites" type="koltsegteritesTipus" minOccurs="0" maxOccurs="unbounded"/>
+                <!-- Hallgato peldanyok -->
+                <xs:element name="hallgato" type="hallgatoTipus" minOccurs="0" maxOccurs="unbounded"/>
+                <!-- Tantargy peldanyok -->
+                <xs:element name="tantargy" type="tantargyTipus" minOccurs="0" maxOccurs="unbounded"/>
+                <!-- Oktato peldanyok -->
+                <xs:element name="oktato" type="oktatoTipus" minOccurs="0" maxOccurs="unbounded"/>
+                <!-- Tanszek peldanyok -->
+                <xs:element name="tanszek" type="tanszekTipus" minOccurs="0" maxOccurs="unbounded"/>
+                <!-- Kapcsolat peldanyok -->
+                <xs:element name="befizet" type="befizetTipus" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="jegy" type="jegyTipus" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="oktat" type="oktatTipus" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="gondoz" type="gondozTipus" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+
+        <!-- Elsodleges kulcsok (xs:key) -->
+        <xs:key name="koltsegteritesKulcs">
+            <xs:selector xpath="Koltsegterites"/>
+            <xs:field xpath="@szamla_szam"/>
+        </xs:key>
+
+        <xs:key name="hallgatoKulcs">
+            <xs:selector xpath="hallgato"/>
+            <xs:field xpath="@neptun"/>
+        </xs:key>
+
+        <xs:key name="tantargyKulcs">
+            <xs:selector xpath="tantargy"/>
+            <xs:field xpath="@tkod"/>
+        </xs:key>
+
+        <xs:key name="oktatoKulcs">
+            <xs:selector xpath="oktato"/>
+            <xs:field xpath="@oktatoId"/>
+        </xs:key>
+
+        <xs:key name="tanszekKulcs">
+            <xs:selector xpath="tanszek"/>
+            <xs:field xpath="@tanszekId"/>
+        </xs:key>
+
+        <!-- Idegen kulcs hivatkozasok (xs:keyref) -->
+        <xs:keyref name="befizetSzamlaRef" refer="koltsegteritesKulcs">
+            <xs:selector xpath="befizet"/>
+            <xs:field xpath="@szamla_szam"/>
+        </xs:keyref>
+
+        <xs:keyref name="befizetHallgatoRef" refer="hallgatoKulcs">
+            <xs:selector xpath="befizet"/>
+            <xs:field xpath="@neptun"/>
+        </xs:keyref>
+
+        <xs:keyref name="jegyHallgatoRef" refer="hallgatoKulcs">
+            <xs:selector xpath="jegy"/>
+            <xs:field xpath="@neptun"/>
+        </xs:keyref>
+
+        <xs:keyref name="jegyTantargyRef" refer="tantargyKulcs">
+            <xs:selector xpath="jegy"/>
+            <xs:field xpath="@tkod"/>
+        </xs:keyref>
+
+        <xs:keyref name="oktatTantargyRef" refer="tantargyKulcs">
+            <xs:selector xpath="oktat"/>
+            <xs:field xpath="@tkod"/>
+        </xs:keyref>
+
+        <xs:keyref name="oktatOktatoRef" refer="oktatoKulcs">
+            <xs:selector xpath="oktat"/>
+            <xs:field xpath="@oktatoId"/>
+        </xs:keyref>
+
+        <xs:keyref name="gondozTantargyRef" refer="tantargyKulcs">
+            <xs:selector xpath="gondoz"/>
+            <xs:field xpath="@tkod"/>
+        </xs:keyref>
+
+        <xs:keyref name="gondozTanszekRef" refer="tanszekKulcs">
+            <xs:selector xpath="gondoz"/>
+            <xs:field xpath="@tanszekId"/>
+        </xs:keyref>
+    </xs:element>
+
+</xs:schema>
